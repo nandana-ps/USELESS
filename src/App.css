@@ -1,111 +1,174 @@
-/* ========== GLOBAL RESET ========== */
-html, body {
+html, body, #root {
+  height: 100%;
+  width: 100%;
   margin: 0;
   padding: 0;
-  height: 100%;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-sizing: border-box;
 }
 
-#root {
-  height: 100%;
-}
-
-/* ========== WELCOME SCREEN CONTAINER ========== */
-.welcome-screen {
-  height: 100vh;
-  width: 100vw;
+/* Fill the viewport with a rich blue gradient */
+.home-page {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center; /* FULL CENTERING */
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(120deg, #1769aa 0%, #1565c0 50%, #64b5f6 100%);
+}
+
+/* Welcome section at top, on blue transparent background */
+.welcome-screen {
   position: relative;
-  overflow: hidden;
-  
-  /* Cute classy animated gradient background */
-  background: linear-gradient(270deg, #fff5c3, #ffef99, #71b8ff);
-  background-size: 600% 600%;
-  animation: gradientShift 18s ease infinite;
-  color: #07508b;
   text-align: center;
-  padding: 1rem;
-}
-
-/* Decorative floating blobs */
-.welcome-screen::before,
-.welcome-screen::after {
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(120px);
-  opacity: 0.15;
-  pointer-events: none;
-}
-
-.welcome-screen::before {
-  width: 280px;
-  height: 280px;
-  background: #f7d774;
-  top: 18%;
-  left: 12%;
-  animation: floatBlob 15s ease-in-out infinite;
-}
-.welcome-screen::after {
-  width: 380px;
-  height: 380px;
-  background: #4a90e2;
-  bottom: 15%;
-  right: 8%;
-  animation: floatBlob 20s ease-in-out infinite reverse;
-}
-
-/* ========== TEXT STYLES ========== */
-.welcome-title {
-  font-size: 4rem;
-  font-weight: 900;
-  margin: 0.5rem 0;
-  text-shadow: 0 0 16px rgba(123, 183, 239, 0.7);
+  padding-top: 30px;
+  padding-bottom: 15px;
+  flex-shrink: 0;
+  color: #fff;
+  background: rgba(21, 101, 192, 0.60); /* semi-transparent blue */
+  border-bottom: 2px solid #2196f3;
 }
 
 .brand {
-  color: #1a67e0;
-  text-shadow: 0 0 14px rgba(106, 179, 255, 0.8);
+  color: #bbdefb;
 }
 
-.welcome-subtitle {
-  font-size: 1.5rem;
-  color: #154d96;
-  margin-bottom: 2.5rem;
-  font-weight: 600;
+/* Mode picker on a slightly lighter blue */
+.personality-picker-inline {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+  background: rgba(33, 150, 243, 0.12); /* light blue bar */
+  border-bottom: 2px solid #1565c0;
 }
 
-/* ========== BUTTON STYLES ========== */
-.start-btn {
-  padding: 1rem 3rem;
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: white;
-  background: linear-gradient(90deg, #339dff 60%, #71bfff 100%);
-  border: none;
-  border-radius: 9999px;
+.personality-list-inline {
+  display: flex;
+  gap: 18px;
+}
+
+.personality-option-inline {
+  padding: 12px 26px;
+  border-radius: 13px;
   cursor: pointer;
-  box-shadow: 0 6px 18px rgba(51, 157, 255, 0.6);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  font-weight: 500;
+  font-size: 1.08rem;
+  border: 2px solid transparent;
+  box-shadow: 0 2px 18px rgba(30, 136, 229, 0.14);
+  background: #1976d2; /* solid blue by default */
+  color: #fff;
+  transition: background 0.18s, border 0.18s, transform 0.14s, color 0.18s;
 }
-.start-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 9px 24px rgba(51, 157, 255, 0.75);
-}
-.start-btn:active {
-  transform: translateY(0);
+.personality-option-inline.selected,
+.personality-option-inline:hover {
+  background: #1565c0;
+  border: 2px solid #64b5f6;
+  color: #bbdefb;
+  transform: scale(1.06);
 }
 
-/* Animations */
-@keyframes gradientShift {
-  0% { background-position: 0% 50% }
-  50% { background-position: 100% 50% }
-  100% { background-position: 0% 50% }
+/* Give Deep Diver and Sage Orion their dark text accent when NOT selected, still readable when selected */
+.personality-option-inline.deep-diver { color: #e0eaf9; }
+.personality-option-inline.sage-orion { color: #d1cdf7; }
+.personality-option-inline.selected.deep-diver { color: #bbdefb; }
+.personality-option-inline.selected.sage-orion { color: #c5cae9; }
+
+/* Chat window, now a deep blue card */
+.chat-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 28px 20px 16px 20px;
+  border-radius: 0;
+  background: linear-gradient(145deg, #1769aa 80%, #42a5f5 100%);
+  box-shadow: none;
+  max-width: 820px;
+  margin: 0 auto;
+  color: #fff;
 }
-@keyframes floatBlob {
-  0%, 100% { transform: translateY(0) }
-  50% { transform: translateY(-20px) }
+.chat-screen h2 {
+  text-align: center;
+  margin-bottom: 6px;
+  color: #bbdefb;
+  font-size: 1.22rem;
 }
+.chat-screen p {
+  text-align: center;
+  font-style: italic;
+  margin-bottom: 20px;
+  color: #e3f2fd;
+  font-size: 1rem;
+}
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+.bot-message {
+  background: #bbdefb; /* lighter blue for contrast */
+  padding: 15px 13px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  color: #0d47a1; /* dark navy text */
+  box-shadow: 0 0 8px #1976d2cc;
+  font-weight: 500;
+}
+
+.chat-input {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+  align-items: center;
+}
+.chat-input input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: 2px solid #64b5f6;
+  font-size: 1.08rem;
+  background: #1565c0;
+  color: #fff;
+  outline: none;
+}
+.chat-input input::placeholder {
+  color: #bbdefb;
+  opacity: 1;
+}
+.chat-input button {
+  padding: 10px 20px;
+  background: #64b5f6;
+  color: #1565c0;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s;
+}
+.chat-input button:hover {
+  background: #bbdefb;
+  color: #1565c0;
+}
+
+/* Decorative blobs blue-themed */
+.decorative-blob {
+  position: absolute;
+  z-index: 0;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  opacity: 0.23;
+  filter: blur(4px);
+  background: #2196f3;
+}
+.top-left {
+  top: 15px;
+  left: 15px;
+  background: #64b5f6;
+}
+.bottom-right {
+  right: 15px;
+  bottom: 12px;
+  background: #1976d2;
+}
+
+
+
