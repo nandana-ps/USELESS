@@ -1,0 +1,111 @@
+/* ========== GLOBAL RESET ========== */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#root {
+  height: 100%;
+}
+
+/* ========== WELCOME SCREEN CONTAINER ========== */
+.welcome-screen {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* FULL CENTERING */
+  position: relative;
+  overflow: hidden;
+  
+  /* Cute classy animated gradient background */
+  background: linear-gradient(270deg, #fff5c3, #ffef99, #71b8ff);
+  background-size: 600% 600%;
+  animation: gradientShift 18s ease infinite;
+  color: #07508b;
+  text-align: center;
+  padding: 1rem;
+}
+
+/* Decorative floating blobs */
+.welcome-screen::before,
+.welcome-screen::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.welcome-screen::before {
+  width: 280px;
+  height: 280px;
+  background: #f7d774;
+  top: 18%;
+  left: 12%;
+  animation: floatBlob 15s ease-in-out infinite;
+}
+.welcome-screen::after {
+  width: 380px;
+  height: 380px;
+  background: #4a90e2;
+  bottom: 15%;
+  right: 8%;
+  animation: floatBlob 20s ease-in-out infinite reverse;
+}
+
+/* ========== TEXT STYLES ========== */
+.welcome-title {
+  font-size: 4rem;
+  font-weight: 900;
+  margin: 0.5rem 0;
+  text-shadow: 0 0 16px rgba(123, 183, 239, 0.7);
+}
+
+.brand {
+  color: #1a67e0;
+  text-shadow: 0 0 14px rgba(106, 179, 255, 0.8);
+}
+
+.welcome-subtitle {
+  font-size: 1.5rem;
+  color: #154d96;
+  margin-bottom: 2.5rem;
+  font-weight: 600;
+}
+
+/* ========== BUTTON STYLES ========== */
+.start-btn {
+  padding: 1rem 3rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: white;
+  background: linear-gradient(90deg, #339dff 60%, #71bfff 100%);
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(51, 157, 255, 0.6);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.start-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 9px 24px rgba(51, 157, 255, 0.75);
+}
+.start-btn:active {
+  transform: translateY(0);
+}
+
+/* Animations */
+@keyframes gradientShift {
+  0% { background-position: 0% 50% }
+  50% { background-position: 100% 50% }
+  100% { background-position: 0% 50% }
+}
+@keyframes floatBlob {
+  0%, 100% { transform: translateY(0) }
+  50% { transform: translateY(-20px) }
+}
